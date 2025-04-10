@@ -2,8 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "your_dockerhub_username/your_app_name"
-    }
+        DOCKER_IMAGE = "adam05farhat/employee-overtime-app" }
 
     stages {
         stage('Checkout') {
@@ -48,7 +47,7 @@ pipeline {
                     sh 'docker build -t ${DOCKER_IMAGE}:latest .'
 
                     // Log in to DockerHub (optional)
-                    sh 'docker login -u your_username -p your_password'
+                    sh 'docker login -u adam05farhat -p your_password'
 
                     // Push Docker image to DockerHub
                     sh 'docker push ${DOCKER_IMAGE}:latest'
@@ -60,7 +59,7 @@ pipeline {
             steps {
                 script {
                     // Deploy Docker containers on the remote server
-                    sh 'ssh user@your_server_ip "docker pull ${DOCKER_IMAGE}:latest && docker-compose -f /path/to/docker-compose.yml up -d"'
+                    sh 'ssh adamb@http://localhost:3000 "docker pull ${DOCKER_IMAGE}:latest && docker-compose -f C:\Users\adamb\OneDrive\Bureau\project\employee-overtime-app\docker-compose.yml up -d"'
                 }
             }
         }
